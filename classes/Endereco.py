@@ -38,12 +38,17 @@ class Endereco:
             self.complemento = complemento
             self.cep = str(cep)
 
+    def __str__(self):
+        return f'{self.rua} - {self.numero}({self.estado})' 
 
-    def consultar_cep(self, cep):
+    @classmethod
+    def consultar_cep(classe, cep):
         '''
         Metodo realiza a consulta do cep em uma api publica para obter informações
         como estado, cidade e rua
         '''
+        if len(str(cep)) != 8:
+            return False
         # continuam existindo variaveis locais, nem tudo é propriedade de objeto
 
         # end point da API de consulta ao cep
@@ -60,7 +65,4 @@ class Endereco:
         # converte a resposta json em dict
         json_resp = response.json()
         return json_resp
-
-
-
-
+    
