@@ -8,17 +8,15 @@ def test_adiciona_endereco_da_pessoa():
     erik = PessoaFisica(49340635899, 'erikbtu2017@gmail.com', 'Erik')
     erik.adicionar_endereco('Toca', Endereco('04552040', 265))
     erik = erik.get_endereco('Toca')
-    assert erik == "Rua Elvira Ferraz - 265(SP)"
+    assert erik.numero == 265
 
 @pytest.mark.com_internet
 @pytest.mark.pessoafisica
 def test_remove_endereco_da_pessoa():
-    with pytest.raises(TypeError) as excinfo:
-        erik = PessoaFisica(49340635899, 'erikbtu2017@gmail.com', 'Erik')
-        erik.adicionar_endereco('Toca', Endereco('04552040', 265))
-        erik.remover_endereco('Toca')
-        erik = erik.get_endereco('Toca')
-    assert 'KeyError' in str(excinfo)
+    erik = PessoaFisica(49340635899, 'erikbtu2017@gmail.com', 'Erik')
+    erik.adicionar_endereco('Toca', Endereco('04552040', 265))
+    erik.remover_endereco('Toca')
+    assert erik.listar_enderecos() == []
 
 @pytest.mark.com_internet
 @pytest.mark.pessoafisica

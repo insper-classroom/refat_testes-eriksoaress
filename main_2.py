@@ -63,3 +63,6 @@ print(pedido)
 
 print(20*'-')
 erik = PessoaFisica(49340635899, 'erikbtu2017@gmail.com', 'Erik')
+erik.adicionar_endereco('Toca', Endereco('04552040', 265))
+erik.remover_endereco('Toca')
+print(erik.listar_enderecos())
