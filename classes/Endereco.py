@@ -64,5 +64,7 @@ class Endereco:
 
         # converte a resposta json em dict
         json_resp = response.json()
+        if json_resp == {'erro': 'true'}:
+            return False
         return json_resp
     

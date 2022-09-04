@@ -1,4 +1,5 @@
 import pytest
+import requests
 from classes.Endereco import Endereco
 
 @pytest.mark.com_internet
@@ -47,12 +48,12 @@ def test_cep_com_menos_digitos():
 def test_cep_inexistente():
     cep = '12345678'
     endereco = Endereco.consultar_cep(cep)
-    assert endereco['erro'] == 'true'
+    assert endereco == False
 
 @pytest.mark.sem_internet
 @pytest.mark.endereco
 def test_sem_internet():
     cep = '18604694'
-    with pytest.raises(TypeError) as excinfo:
+    with pytest.raises(requests.exceptions.ConnectionError) as excinfo:
         endereco = Endereco.consultar_cep(cep)
-    assert "getaddrinfo failed" in str(excinfo.value)
+    assert "Failed to establish a new connection" in str(excinfo.value)

@@ -59,10 +59,11 @@ print("Pedido aguardando coleta")
 
 ## Pedido deve imprir todos os detalhes da compra - pessoa, endereço e produtos
 print(pedido)
-
-
-print(20*'-')
-erik = PessoaFisica(49340635899, 'erikbtu2017@gmail.com', 'Erik')
-erik.adicionar_endereco('Toca', Endereco('04552040', 265))
-erik.remover_endereco('Toca')
-print(erik.listar_enderecos())
+endereco = Endereco('18604694', 200)
+pessoa = PessoaFisica(49340635899, 'erikbtu2017@gmail.com', 'Erik')
+pessoa.adicionar_endereco('Casa', endereco)
+produto = Produto(1, 'Melancia')
+carrinho = Carrinho()
+carrinho.adicionar_item(produto, 2)
+pedido = Pedido(pessoa, carrinho)
+print(pedido)
